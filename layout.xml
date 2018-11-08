@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout onVolumeUp="scroll_up" onVolumeDown="scroll_down">
+  <grid>
+    <row>
+		<touch id="touch" 
+			ontap="tap" 
+			ondoubletap="double"
+			onhold="hold" 
+			onup="onup" 
+			ontouchdelta="delta" />
+	  </row>
+		<row weight="wrap">
+			<button ontap="leftClick" onhold="hold" onup="clickDrop" />
+			<button ontap="rightClick" />
+	  </row>
+  </grid>
+</layout>
