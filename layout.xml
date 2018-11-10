@@ -2,16 +2,17 @@
 <layout onVolumeUp="scroll_up" onVolumeDown="scroll_down">
   <grid>
     <row>
-		<touch id="touch" 
-			ontap="tap" 
-			ondoubletap="double"
-			onhold="hold" 
-			onup="onup" 
-			ontouchdelta="delta" />
+			<touch id="touch" 
+				ontap="tap"
+				onhold="hold" 
+				onup="onup" 
+				ontouchstart="touchstart"
+				ontouchend="touchend"
+				ontouchdelta="delta" />
 	  </row>
 		<row weight="wrap">
-			<button ontap="leftClick" onhold="hold" onup="clickDrop" />
-			<button ontap="rightClick" />
+			<button id="lButton" text="L" ontap="leftClick" onhold="hold" onup="clickDrop" />
+			<button id="rButton" text="R" ontap="rightClick" />
 	  </row>
   </grid>
 </layout>

@@ -3,6 +3,8 @@ local mouse = libs.mouse;
 
 dragging = false;
 
+last = 0;
+
 function endDrag()
 	dragging = false;
 	mouse.dragend();
@@ -30,33 +32,49 @@ actions.scroll_down = function()
 end
 
 actions.tap = function()
-	if (dragging) then
-		endDrag();
-	else
-		mouse.click("left");
-	end
-end
-
-actions.double = function()
-  mouse.click("right");
+  if (dragging) then
+    endDrag();
+  else
+    mouse.click("left");
+  end
 end
 
 actions.hold = function()
-	mouse.down();
+  mouse.down();
 	mouse.dragbegin();
 	dragging = true;
 end
 
+-- on touch release
 actions.onup = function()
   if (dragging == true and settings.autodrop == "1") then
     endDrag();
+  end
+end
+
+actions.touchstart = function(id, x, y)
+--print("TS: id"..id.."x"..x.."y"..y);
+	last = id;
+end
+
+-- change in mouse
+actions.delta = function(id, x, y)
+--print("dl: id"..id.."x"..x.."y"..y);
+	if (id == last) then
+		mouse.moveraw(x, y);
+	end
+
+	if (dragging and id ~= last) then
+		endDrag();
 	end
 end
 
-actions.delta = function(id, x, y)
-	mouse.moveraw(x, y);
+actions.touchend = function(id, x, y)
+--print("TE: id"..id.."x"..x.."y"..y);
 end
 
+
+-- functions for mouse buttons
 actions.clickDrop = function()
 	if (dragging) then
 		endDrag();
