@@ -12,7 +12,7 @@ function endDrag()
 end
 
 actions.scroll_up = function()
-	if (settings.usemouse == "1") then
+	if (settings.usemousescroll == "1") then
 		mouse.vscroll(settings.mousescroll);
 	else
 		for i = 0, settings.linescroll do
@@ -22,7 +22,7 @@ actions.scroll_up = function()
 end
 
 actions.scroll_down = function()
-	if (settings.usemouse == "1") then
+	if (settings.usemousescroll == "1") then
 		mouse.vscroll(-settings.mousescroll);
 	else
 		for i = 0, settings.linescroll do
@@ -73,6 +73,13 @@ actions.touchend = function(id, x, y)
 --print("TE: id"..id.."x"..x.."y"..y);
 end
 
+-- never triggered...for some reason
+actions.multitap = function(n)
+	print("multitap: "..n);
+	if (n == 2) then
+		mouse.click("right");
+	end
+end
 
 -- functions for mouse buttons
 actions.clickDrop = function()
